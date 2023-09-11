@@ -48,3 +48,16 @@ def capitalize_names(headers, data):
         entry[last_name_index] = entry[last_name_index].capitalize()
 
     return data
+
+def validate_answer_3(data):
+    valid_data = []
+
+    for entry in data:
+        answer_3 = entry[5]  # Assuming 'answer_3' is always at index 5
+
+        # Check if answer_3 is a valid numeric value between 1 and 10
+        if isinstance(answer_3, int) and 1 <= answer_3 <= 10:
+            valid_data.append(entry)
+
+    return valid_data
+

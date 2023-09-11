@@ -1,7 +1,7 @@
 # Import the functions you want to test
 
 import pytest 
-from extract import get_input, remove_duplicates, remove_empty_lines, capitalize_names
+from extract import get_input, remove_duplicates, remove_empty_lines, capitalize_names, validate_answer_3
 
 # Test that file is read into a list
 def test_input_is_list():
@@ -65,3 +65,21 @@ def test_capitalize_names():
     for entry in result:
         assert entry[headers.index('first_name')] == entry[headers.index('first_name')].capitalize()
         assert entry[headers.index('last_name')] == entry[headers.index('last_name')].capitalize()
+
+# Ticket 5
+
+def test_validate_answer_3():
+    # Arrange (Define input data)
+    data = [
+        [1, 'John', 'Doe', 'yes', 'no', 5],
+        [2, 'Jane', 'Smith', 'no', 'yes', 12],
+        [3, 'Alice', 'Johnson', 'yes', 'yes', 'invalid'],
+        [4, 'Bob', 'Brown', 'no', 'no', 8],
+    ]
+
+    # Act (Apply the function to the data)
+    result = validate_answer_3(data)
+
+    # Assert (Check if the result contains only valid rows)
+    for entry in result:
+        assert 1 <= entry[5] <= 10  # Directly access 'answer_3' by index (assuming it's at index 5)
