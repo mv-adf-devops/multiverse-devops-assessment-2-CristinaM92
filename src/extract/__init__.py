@@ -38,3 +38,13 @@ def remove_empty_lines(array_input2):
                 clean_list.append(sublist)
                 break
     return clean_list
+
+def capitalize_names(headers, data):
+    first_name_index = headers.index('first_name')
+    last_name_index = headers.index('last_name')
+
+    for entry in data:
+        entry[first_name_index] = entry[first_name_index].capitalize()
+        entry[last_name_index] = entry[last_name_index].capitalize()
+
+    return data

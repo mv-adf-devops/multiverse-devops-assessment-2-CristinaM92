@@ -1,5 +1,7 @@
+# Import the functions you want to test
+
 import pytest 
-from extract import get_input, remove_duplicates, remove_empty_lines
+from extract import get_input, remove_duplicates, remove_empty_lines, capitalize_names
 
 # Test that file is read into a list
 def test_input_is_list():
@@ -45,3 +47,21 @@ def test_remove_empty_lines():
     #Assert
     assert array_clean == [[4,"Harding","Estrada","no",14],
                   [6,"Abra","Sheppard","yes",6]]
+
+# Ticket 4
+
+def test_capitalize_names():
+    # Arrange (Define input data)
+    headers = ['user_id', 'first_name', 'last_name', 'answer_1', 'answer_2', 'answer_3']
+    data = [
+        [1, 'john', 'doe', 'yes', 'no', 'yes'],
+        [2, 'jane', 'smith', 'no', 'yes', 'no'],
+    ]
+
+    # Act (Apply the function to the data)
+    result = capitalize_names(headers, data)
+
+    # Assert (Check if the first_name and last_name fields are capitalized)
+    for entry in result:
+        assert entry[headers.index('first_name')] == entry[headers.index('first_name')].capitalize()
+        assert entry[headers.index('last_name')] == entry[headers.index('last_name')].capitalize()
