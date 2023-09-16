@@ -10,7 +10,16 @@ resource "aws_s3_bucket" "this" {
 resource "aws_s3_bucket_acl" "this" {
   bucket = aws_s3_bucket.this.id
   acl    = "private"
+  depends_on = [aws_s3_bucket_ownership_controls.s3_bucket_acl_ownership]
 }
+
+resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_ownership" {
+  bucket = aws_s3_bucket.bucket-one-two.id
+  rule {
+    object_ownership = "ObjectWriter"
+  }
+}
+
 
 resource "aws_s3_object" "this" {
   bucket = aws_s3_bucket.this.id
