@@ -61,3 +61,7 @@ def validate_answer_3(data):
 
     return valid_data
 
+def output_to_file(output_filename,data):
+    with open(output_filename,"w",encoding = "UTF8",newline = "\n") as f:
+        writer = csv.writer(f)
+        writer.writerows(data)
