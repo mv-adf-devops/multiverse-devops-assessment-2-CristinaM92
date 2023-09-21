@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "this" {
-  bucket_prefix = "mvws9-[cristina]"
+  bucket_prefix = "mvws9-cristina210923"
   force_destroy = true
 
   tags = {
@@ -14,12 +14,11 @@ resource "aws_s3_bucket_acl" "this" {
 }
 
 resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_ownership" {
-  bucket = aws_s3_bucket.bucket-one-two.id
+  bucket = aws_s3_bucket.this.id
   rule {
     object_ownership = "ObjectWriter"
   }
 }
-
 
 resource "aws_s3_object" "this" {
   bucket = aws_s3_bucket.this.id
